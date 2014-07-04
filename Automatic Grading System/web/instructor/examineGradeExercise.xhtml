@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">   
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGroup>
+                Choose a Student: 
+                <h:selectOneMenu value="#{examineGradeExercise.selectedStudent}" >
+                    <f:selectItems value="#{examineGradeExercise.students}"   />
+                </h:selectOneMenu>
+                Choose an Exercise:
+                <h:selectOneMenu value="#{examineGradeExercise.selectedExercise}" >
+                    <f:selectItems value="#{examineGradeExercise.assignedExercise}"   />
+                </h:selectOneMenu>
+                <h:commandButton value="Click to Choose a Student Exercise" action="#{examineGradeExercise.setExerciseChosen(true)}"/>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{examineGradeExercise.exerciseChosen}" >
+                <div style="width:650px">
+                <h:panelGrid columns="3" style="margin:10px" cellpadding="5" >
+                     Comments entered by the Instructor
+                    <h:panelGroup>
+                        (A new score will be set after a student submit the program. Score can be overridden by the instructor) (max score for 
+                            this exercise is #{examineGradeExercise.score}) Current Score:
+                        <h:inputText value="#{examineGradeExercise.score}" />
+                    </h:panelGroup>
+                    <h:commandButton value="Save/Modify Score/Comments" action="#{examineGradeExercise.saveNewScore}"/>
+                </h:panelGrid>   
+                    <p:inputTextarea rows="2" cols="120" value="#{examineGradeExercise.comment}" autoResize="false" />
+                    <h:panelGrid columns="3" style="margin:10px" cellpadding="5" >
+                        <h:panelGrid columns="2" style="margin:10px" cellpadding="5" >
+                           Individual Extension:
+                            <h:panelGroup>
+                                <p:calendar value="#{examineGradeExercise.date}" id="date" showOn="button"  />
+                                mm/dd/yyyy
+                            </h:panelGroup>
+                        </h:panelGrid>>
+                        <h:commandButton value="Set Individual Extension" action="#{examineGradeExercise.setIndividualExtension}"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <h:outputText value="#{examineGradeExercise.exerciseDescription()}" escape="false" /><br/><br/>
+                        <h:outputText value="#{examineGradeExercise.howtocompilerunsubmit()}" escape="false" /><br/><br/>
+                    </h:panelGrid>
+                </div>
+            
+                <p:inputTextarea rows="15" cols="100" value="#{examineGradeExercise.exerciseInput}" autoResize="false" /> <br />
+                <h:commandButton value="Compile / Run / Submit" action="#{examineGradeExercise.saveAndCompile}"/>
+            </h:panelGroup>
+            <h:panelGrid>
+                <h:outputText value="#{examineGradeExercise.runOutputText}" escape="false" rendered="#{examineGradeExercise.runRendered}" />
+            </h:panelGrid>
+
+        </h:form>
+    </h:body>
+</html>
+

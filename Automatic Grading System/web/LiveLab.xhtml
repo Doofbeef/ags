@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">       
+
+    <h:head> 
+        <link rel="stylesheet" href="mystyle.css"></link> 
+    </h:head>
+
+
+
+    <h:body>    
+        <h:panelGrid columns="3" width="1200">
+            <font size="4"><b>LiveLab for Java 9E</b></font>
+            <h:form id="form1">
+                <h:commandButton id="slob1" value="Log out" action="#{studentLogin.logout}" rendered="false" />
+                <h:commandButton id="ilob1" value="Log out" action="#{instructorLogin.logout}" rendered="false"  />
+                <h:commandLink style="font-size:14px; text-align: right" value="Brief Manual" />
+            </h:form>
+        </h:panelGrid>         
+        <hr/>
+
+        <p:tabView id="tabview1" style="border: none" activeIndex="#{tabHandler.mainTabs}" dynamic="true" >
+            <p:ajax event="tabChange" listener="#{tabHandler.onMTabChange}" immediate="true" update=":form1"/>
+            <p:tab id="studentTab" title="Student" >
+                <p:tabView id="studentTabView" style="border: none" activeIndex="#{tabHandler.studentTabs}" dynamic="true" > 
+                    <p:ajax event="tabChange" listener="#{tabHandler.onSTabChange}" immediate="true" />
+                    <p:tab id="completeExerciseTab" title="Complete Exercise" >  
+                        <ui:include src="#{studentLogin.directToTab(0)}" />
+                    </p:tab>  
+
+                    <p:tab id="exerciseSummaryTab" title="Exercise Summary" >  
+                        <ui:include src="#{studentLogin.directToTab(1)}" />
+                    </p:tab>  
+
+                    <p:tab id="peerEvaluation" title="Peer Evaluation" >  
+                        <ui:include src="#{studentLogin.directToTab(2)}" />
+                    </p:tab>
+
+                    <p:tab id="selfTest" title="SelfTest" >  
+                        <ui:include src="#{studentLogin.directToTab(3)}" />
+                    </p:tab>
+
+                    <p:tab id="takeInstructorAssignedQuiz" title="Take Instructor Assigned Quiz" >  
+                        <ui:include src="#{studentLogin.directToTab(4)}" />
+                    </p:tab>
+
+                </p:tabView>
+
+            </p:tab>                              
+
+            <p:tab title="Instructor" id="instructorTab">  
+                <p:tabView id="instructorTabView" style="border: none" activeIndex="#{tabHandler.instructorTabs}" dynamic="true" >  
+                    <p:ajax event="tabChange" listener="#{tabHandler.onITabChange}" immediate="true" />
+                    <p:tab id="createExerciseTab" title="Create Exercise" >  
+                        <ui:include src="#{instructorLogin.directToTab(0)}" />
+                    </p:tab>  
+
+                    <p:tab id="assignExerciseTab" title="Assign Exercise" >  
+                        <ui:include src="#{instructorLogin.directToTab(1)}" />
+                    </p:tab>  
+
+                    <p:tab id="examineGradeExerciseTab" title="Examine/Grade Exercise" >  
+                        <ui:include src="#{instructorLogin.directToTab(2)}" />
+                    </p:tab>
+
+                    <p:tab id="checkExerciseProgressTab" title="Check Exercise Progress" >  
+                        <ui:include src="#{instructorLogin.directToTab(3)}" />
+                    </p:tab>
+
+                    <p:tab id="plagiarismCheck" title="Plagiarism Check" >  
+                        <ui:include src="#{instructorLogin.directToTab(4)}" />
+                    </p:tab>
+
+                    <p:tab id="manageAccountTab" title="Manage Account" >  
+                        <ui:include src="#{instructorLogin.directToTab(5)}" />
+                    </p:tab>
+
+                    <p:tab id="createQuiz" title="Create Quiz" >  
+                        <ui:include src="#{instructorLogin.directToTab(6)}" />
+                    </p:tab>
+
+                    <p:tab id="assignQuiz" title="Assign Quiz" >  
+                        <ui:include src="#{instructorLogin.directToTab(7)}" />
+                    </p:tab>
+
+                    <p:tab id="examineQuiz" title="Examine Quiz" >  
+                        <ui:include src="#{instructorLogin.directToTab(8)}" />
+                    </p:tab>
+
+                    <p:tab id="attendanceTab" title="Attendance" >  
+                        <ui:include src="#{instructorLogin.directToTab(9)}" />
+                    </p:tab>
+
+                </p:tabView>
+            </p:tab>  
+
+            <p:tab id="aboutLiveLab" title="About LiveLab" >  
+                <ui:include src="AboutLiveLab.xhtml"/>
+            </p:tab>
+
+            <p:tab id="testimonials" title="Testimonials" >  
+                <ui:include src="Testimonials.xhtml"/>
+            </p:tab>
+
+        </p:tabView>  
+    </h:body>
+</html>
+

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">   
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGroup>
+                <b>Choose an Exercise (assigned by instructor): </b>
+                <h:selectOneMenu value="#{completeExercise.selectedExercise}" >
+                    <f:selectItems value="#{completeExercise.assignedExercise}"   />
+                </h:selectOneMenu>
+                <h:commandButton value="Choose an Exercise" action="#{completeExercise.setExerciseChosen(true)}"/>
+            </h:panelGroup>
+            <br /><br />
+            <h:panelGroup rendered="#{completeExercise.exerciseChosen}" >
+                <div style="width:750px">    
+                    <p:inputTextarea rows="2" cols="120" value="#{completeExercise.gradingrules()}" autoResize="false" readonly="true" />
+                    <h:panelGrid>
+                        <h:outputText value="#{completeExercise.exerciseDescription()}" escape="false" /><br/><br/>
+                        <h:outputText value="#{completeExercise.howtocompilerunsubmit()}" escape="false" /><br/><br/>  
+                    </h:panelGrid>
+
+                </div>
+                <p:inputTextarea rows="15" cols="100" value="#{completeExercise.exerciseInput}" autoResize="false" /> <br />
+                <h:commandButton value="Compile / Run / Submit" action="#{completeExercise.saveAndCompile}"/>
+            </h:panelGroup><br/>
+            <h:panelGrid>
+                <h:outputText value="#{completeExercise.runOutputText}" escape="false" rendered="#{completeExercise.runRendered}" />
+            </h:panelGrid>
+
+        </h:form>
+    </h:body>
+</html>
+

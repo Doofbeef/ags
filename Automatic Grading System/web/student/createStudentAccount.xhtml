@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>
+
+    </h:head>
+    <h:body>    
+        <h:form>
+            <font size="4" color="blue"><b>Java LiveLab Student Registration</b></font><br/><br/>
+            This page lets you create an account for accessing LiveLab. To register, get instructions from your instructor.<br/>
+            You need the student signup code and the course ID.<br/><br/>
+            <h:panelGrid columns="2">
+                <h:panelGroup>
+                    <h:outputText value="Signup Code:" style="color: #{studentRegister.fontColor(0)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{studentRegister.signupCode}" size="40" style="background-color: #{studentRegister.inputColor(0)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(0)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Username:(use FirstnameLastname" style="color: #{studentRegister.fontColor(1)}" /><br/>
+                    <h:outputText value="convention, e.g., JohnSmith)" style="color: #{studentRegister.fontColor(1)}" /><font color="red">*</font> <br/>
+                    <h:inputText value="#{studentRegister.username}" size="40" style="background-color: #{studentRegister.inputColor(1)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(1)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Password:" style="color: #{studentRegister.fontColor(2)}" /><font color="red">*</font><br/>
+                    <h:inputSecret value="#{studentRegister.password}" size="40" style="background-color: #{studentRegister.inputColor(2)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(2)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Confirm Password:" /><br/>
+                    <h:inputSecret value="#{studentRegister.confirmPassword}" size="40" /><br/>
+                </h:panelGroup>
+                <br/>
+
+                <h:panelGroup>
+                    <h:outputText value="Course ID:" style="color: #{studentRegister.fontColor(3)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{studentRegister.courseID}" size="40" style="background-color: #{studentRegister.inputColor(3)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(3)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Student First Name:" style="color: #{studentRegister.fontColor(4)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{studentRegister.firstName}" size="40" style="background-color: #{studentRegister.inputColor(4)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(4)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Student Last Name:" style="color: #{studentRegister.fontColor(5)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{studentRegister.lastName}" size="40" style="background-color: #{studentRegister.inputColor(5)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(5)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Student Email:" style="color: #{studentRegister.fontColor(6)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{studentRegister.email}" size="40" style="background-color: #{studentRegister.inputColor(6)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{studentRegister.message(6)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Student Major:" /><br/>
+                    <h:inputText value="#{studentRegister.major}" size="40" /><br/>
+                </h:panelGroup><br/>
+
+                <h:commandButton value="Register Student" action="#{studentRegister.register()}" />
+
+                <h:panelGroup rendered="#{studentRegister.success()}">
+                    Congratulations! You have successfully create a student account. <br/>Click
+                    <h:commandLink value="LiveLab" action="/LiveLab?faces-redirect=true" /> to rejoin LiveLab <br/>
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+    </h:body>    
+</html>
+

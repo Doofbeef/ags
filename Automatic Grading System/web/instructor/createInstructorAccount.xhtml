@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>
+
+    </h:head>
+    <h:body>    
+        <h:form>
+            <font size="4" color="blue"><b>Java LiveLab Instructor Registration</b></font><br/><br/>
+            This page lets an instructor create an account for accessing LiveLab. To obtain the signup code, please email<br/>
+            y.daniel.liang@gmail.com (provide your school and course information for verification). If you have multiple sections, create<br/>
+            multiple accounts. Each account must have a unique course ID. Your students will create accounts using the course ID.<br/>
+            Your student accounts are linked to your account through the course ID.<br/><br/>
+            <h:panelGrid columns="2">
+                <h:panelGroup>
+                    <h:outputText value="Signup Code:" style="color: #{instructorRegister.fontColor(0)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{instructorRegister.signupCode}" size="40" style="background-color: #{instructorRegister.inputColor(0)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(0)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Username:(use FirstnameLastname" style="color: #{instructorRegister.fontColor(1)}" /><br/>
+                    <h:outputText value="convention, e.g., JohnSmith)" style="color: #{instructorRegister.fontColor(1)}" /><font color="red">*</font> <br/>
+                    <h:inputText value="#{instructorRegister.username}" size="40" style="background-color: #{instructorRegister.inputColor(1)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(1)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Password:" style="color: #{instructorRegister.fontColor(2)}" /><font color="red">*</font><br/>
+                    <h:inputSecret value="#{instructorRegister.password}" size="40" style="background-color: #{instructorRegister.inputColor(2)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(2)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Confirm Password:" /><br/>
+                    <h:inputSecret value="#{instructorRegister.confirmPassword}" size="40" /><br/>
+                </h:panelGroup>
+                <br/>
+
+                <h:panelGroup>
+                    <h:outputText value="Instructor Email:" style="color: #{instructorRegister.fontColor(3)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{instructorRegister.email}" size="40" style="background-color: #{instructorRegister.inputColor(3)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(3)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Course ID(e.g., NYUCS123Fall2013):" style="color: #{instructorRegister.fontColor(4)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{instructorRegister.courseID}" size="40" style="background-color: #{instructorRegister.inputColor(4)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(4)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Instructor First Name:" style="color: #{instructorRegister.fontColor(5)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{instructorRegister.firstName}" size="40" style="background-color: #{instructorRegister.inputColor(5)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(5)}" style="color: red" />
+
+                <h:panelGroup>
+                    <h:outputText value="Instructor Last Name:" style="color: #{instructorRegister.fontColor(6)}" /><font color="red">*</font><br/>
+                    <h:inputText value="#{instructorRegister.lastName}" size="40" style="background-color: #{instructorRegister.inputColor(6)}" /><br/>
+                </h:panelGroup>
+                <h:outputText value="#{instructorRegister.message(6)}" style="color: red" />    
+
+                <h:panelGroup>
+                    <h:outputText value="School(Optional)" /><br/>
+                    <h:inputText value="#{instructorRegister.school}" size="40" /><br/>
+                </h:panelGroup><br/>
+
+                <h:panelGroup>
+                    <h:outputText value="State(Optional):" /><br/>
+                    <h:inputText value="#{instructorRegister.state}" size="40" /><br/>
+                </h:panelGroup><br/>
+
+                <h:panelGroup>
+                    <h:outputText value="Country(Optional):" /><br/>
+                    <h:inputText value="#{instructorRegister.country}" size="40" /><br/>
+                </h:panelGroup><br/>
+
+                <h:commandButton value="Register Instructor" action="#{instructorRegister.register()}" />
+                
+                <h:panelGroup rendered="#{instructorRegister.success()}">
+                    Congratulations! You have successfully create an instructor account. <br/>Click
+                    <p:commandLink value="LiveLab" action="/LiveLab?faces-redirect=true" /> to rejoin LiveLab <br/>
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+    </h:body>    
+</html>
+

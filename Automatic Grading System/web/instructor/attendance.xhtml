@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGroup>
+                <h:panelGrid columns="2">
+                    <h:panelGrid columns="4" >
+                        <b>Specify a date: </b>
+                    <p:calendar value="#{attendance.date1}" id="date1" showOn="button" />
+                    <b>Specify a date: </b>
+                    <p:calendar value="#{attendance.date2}" id="date2" showOn="button" />
+                        <p:selectManyMenu value="#{attendance.selectedAddStudents}" style="height:200px">
+                                <f:selectItems value="#{attendance.selectAddStudents}" />
+                        </p:selectManyMenu>
+                        <b></b>
+                        <p:selectManyMenu value="#{attendance.selectedRemoveStudents}" style="height:200px">
+                                <f:selectItems value="#{attendance.selectRemoveStudents}" />
+                        </p:selectManyMenu>
+                        <b></b>
+                        <h:commandButton value="Add Attendance" action="#{attendance.addAttendance()}"/>
+                        <b></b>
+                        <h:commandButton value="Remove Attendance" action="#{attendance.removeAttendance()}"/>
+                    </h:panelGrid>
+                    <p:dataTable var="record" value="#{attendance.record}" scrollable="true" scrollHeight="250">
+                        <p:column headerText="Date Attended">
+                            <h:outputText value="#{record.dateAttended}" />
+                        </p:column>
+
+                        <p:column headerText="Full Name">
+                            <h:outputText value="#{record.fullName}" />
+                        </p:column>
+
+                        <p:column headerText="Attended">
+                            <p:selectBooleanCheckbox value="#{record.attended}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup>
+                <div style="width:750px">
+                <p:dataTable var="summary" value="#{attendance.summary}">
+                    <p:column headerText="Last Name">
+                        <h:outputText value="#{summary.lastName}" />
+                    </p:column>
+
+                    <p:column headerText="First Name">
+                        <h:outputText value="#{summary.firstName}" />
+                    </p:column>
+
+                    <p:column headerText="Attendance Count">
+                        <h:outputText value="#{summary.count}" />
+                    </p:column>
+
+                    <p:column headerText="Percentage">
+                        <h:outputText value="#{summary.percentage}" />
+                    </p:column>
+                </p:dataTable>
+                </div>
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <p:tabView id ="checkExerciseProgressTabView" style="border: none" dynamic="true" >  
+            <p:tab id ="checkExerciseProgress1" title ="Exercise Progress">
+                <h:form>
+                    <h:panelGrid columns="3" style="margin:10px" cellpadding="5" >
+                        <br/><br/>
+                        <h:panelGroup>
+
+                            <h:panelGrid columns="5">
+                                <h:outputLabel value="Choose an Exercise: " />
+                                <h:selectOneMenu value="#{checkExerciseProgress.selectedExercise}" >
+                                    <f:selectItems value="#{checkExerciseProgress.assignedExercise}"   />
+                                </h:selectOneMenu>
+                                <h:commandButton value="Refresh" /> 
+                                <p>You can modify the scores for the submitted 
+                                    exercises by <br/>entering new scores and clicking
+                                    the Save New Scores <br/>button.</p>
+                                <h:commandButton value="Save New Scores" action="#{checkExerciseProgress.saveNewScore}" /> 
+                            </h:panelGrid>
+                            <h:dataTable value="#{checkExerciseProgress.exerciseProgress}" var="exerciseProgress"
+                                         title="Student Exercise Progress Report"
+                                         style="border: 1px">
+                                <h:column>
+                                    <f:facet name="header">lastName</f:facet>
+                                    #{exerciseProgress.lastName}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">firstName</f:facet>
+                                    #{exerciseProgress.firstName}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">exerciseName</f:facet>
+                                    #{exerciseProgress.exerciseName}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">score</f:facet>
+                                    <h:inputText value="#{exerciseProgress.score}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">maxScore</f:facet>
+                                    #{exerciseProgress.maxScore}
+                                </h:column>
+                            </h:dataTable>
+
+                        </h:panelGroup>
+
+                    </h:panelGrid>
+                </h:form>
+            </p:tab>
+            <p:tab id="checkExerciseProgress2" title="Exercise Progress Summary">
+                <h:form>
+                    <h:panelGrid columns="3" style="margin:10px" cellpadding="5" >
+                        <h:panelGroup>
+                            <h:outputLabel value="Total number of students: #{checkExerciseProgress.totalStudents}" />
+                            <br/><br/>
+                            <h:outputLink value="mailto:#{checkExerciseProgress.email}"> 
+                                <h:outputText value="Email All" />  
+                            </h:outputLink> 
+                            <br/><br/>
+
+                            <p:dataTable value="#{checkExerciseProgress.exerciseProgressSummary}" var="exerciseProgressSummary"
+                                         styleClass="table"
+                                         style="border: 1px;">
+                                <p:column>
+                                    <f:facet name="header">lastName</f:facet>
+                                    #{exerciseProgressSummary.lastName}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">firstName</f:facet>
+                                    #{exerciseProgressSummary.firstName}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">totalScore</f:facet>
+                                    #{exerciseProgressSummary.totalScore}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">maxTotalScore</f:facet>
+                                    #{exerciseProgressSummary.maxTotalScore}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Percentage</f:facet>
+                                    #{exerciseProgressSummary.percentage}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Number of Exercises Submitted</f:facet>
+                                    #{exerciseProgressSummary.numberOfExercisesSubmitted}
+                                </p:column>
+                            </p:dataTable>
+
+                        </h:panelGroup>
+
+                    </h:panelGrid>
+                </h:form>
+            </p:tab>
+
+        </p:tabView>
+    </h:body>
+</html>
+

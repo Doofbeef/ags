@@ -1,0 +1,54 @@
+/* 
+    Document   : mystyle
+    Created on : Aug 31, 2012, 11:41:07 AM
+    Author     : Eiji
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.ui-tabs-panel {
+
+    font-size: 100%;
+    background-color: #DDDDDD;
+}
+.ui-tabs{
+    font-size: 80%;
+    background-color: #DDDDDD;
+}
+
+body
+{
+
+    font-size: 58%;
+    background-color: #DDDDDD;
+}
+p
+{
+
+    font-family:"Times New Roman";
+    font-size:12px;
+}
+form{
+    font-size:84%;
+}
+table{
+
+    color:#222222;
+    background-color: #DDDDDD;
+    padding:0;
+}
+h
+{
+    padding: 0;
+}
+div
+{
+
+    padding:0;
+    background-color: #DDDDDD;
+}

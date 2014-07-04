@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">   
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <p:tabView id="assignExerciseTabView" dynamic="true" style="border: none" >  
+            <p:tab id="assignExerciseTab1" title="Assign Exercise">
+                <h:form>
+                    <h:panelGrid columns="3" style="margin:10px" cellpadding="5" >
+                        <h:panelGroup>
+                            These are the exercises you have<br/>assigned to your students. You may<br/>
+                            choose to remove them from the list below:
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                            Select exercises from the system pool<br/>to assign to your students:
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                            Select exercises from the custom<br/>exercise list to assign to your<br/>
+                            students:
+                        </h:panelGroup>
+
+                        <p:selectManyMenu value="#{assignExercise.selectedAssignedExercise}" style="height:100px">
+                            <f:selectItems value="#{assignExercise.selectAssignedExercise}" />
+                        </p:selectManyMenu>
+
+                        <p:selectManyMenu value="#{assignExercise.selectedDefaultExercise}" style="height:100px">
+                            <f:selectItems value="#{assignExercise.selectDefaultExercise}" />
+                        </p:selectManyMenu>                      
+
+                        <p:selectManyMenu value="#{assignExercise.selectedCustomExercise}" style="height:100px">
+                            <f:selectItems value="#{assignExercise.selectCustomExercise}" />
+                        </p:selectManyMenu>                      
+
+                        <h:commandButton value="Remove from the Assigned List" action="#{assignExercise.unassign}" />
+
+                        <h:commandButton value="Add to Assigned List" action="#{assignExercise.assign}" />
+
+                        <h:commandButton value="Add to Assigned List" action="#{assignExercise.assignCustom}" />
+
+                    </h:panelGrid><br/>
+
+                    <h:panelGrid columns="3" style="margin:10px" cellpadding="5" >
+                        <h:outputText value="Your current time zone is set to #{assignExercise.timeZone}" />
+
+                        <h:panelGroup>
+                            <b>Choose a new time zone:</b>
+                            <h:selectOneMenu value="#{assignExercise.selectedTimeZone}" >
+                                <f:selectItems value="#{assignExercise.timeZoneList}" />
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+
+                        <h:commandButton value="Set a New TimeZone" action="#{assignExercise.setANewTimeZone}" />
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2" style="margin:10px" cellpadding="5">
+                        <h:panelGroup>
+                            Note: After the due date, students will not be able to submit the exercise. By default, the due date is set to a week from the current date and the<br/>
+                            score is set to 10. You can change the due date and score in the table and click Save Changes to save the change. If you have set values for an<br/>
+                            individual, the individual settings are independent from the values set in the following table.
+                        </h:panelGroup>
+
+                        <h:commandButton value="Save Changes" action="#{assignExercise.saveChanges}"/>
+
+                    </h:panelGrid>
+                    <h:dataTable value="#{assignExercise.exercises}" var="exercises" >
+                        <f:facet name="header">
+                            Exercise Due Dates:
+                        </f:facet>
+                        <h:column>
+                            <f:facet name="header">Exercise Name</f:facet>
+                            #{exercises.exerciseName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">When Assigned</f:facet>
+                            #{exercises.whenAssigned}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Due Date</f:facet>
+                            <h:inputText value="#{exercises.dueDate}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Score</f:facet>
+                            <h:inputText value="#{exercises.score}" />
+                        </h:column>
+                    </h:dataTable>  
+                </h:form>
+            </p:tab>
+
+            <p:tab id="assignExerciseTab2" title="View Exercise">
+                View Exercise Tab
+            </p:tab>
+        </p:tabView>
+    </h:body>
+</html>
+

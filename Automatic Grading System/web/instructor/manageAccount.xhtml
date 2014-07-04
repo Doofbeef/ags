@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>
+
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <h:panelGrid columns="2" style="margin:10px" cellpadding="5" >
+                <h:panelGroup>
+                    Select students to remove. CAUTION: Students will be <br/>removed permanently from the system.<br/>
+                    <h:selectManyMenu value="#{manage.selectedStudentNames}" style="height:100px" >
+
+                        <f:selectItems value ="#{manage.selectStudentNames}"/>
+
+                    </h:selectManyMenu>                      
+                    <br/>
+                    <h:commandButton value="Remove" action="#{manage.remove}"/><br/><br/>
+                    After all students are removed, an instructor can <br/>remove the instructor's account from the system.<br/><br/>
+                    <h:commandButton value="Remove Myself" action="#{manage.removeSelf}"/>
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <h:panelGrid>
+                        You can change student email and major and enable/disable login.
+                        <h:commandButton value="Save Changes" action="#{manage.saveChanges}" /> 
+                    </h:panelGrid>
+                    <h:dataTable  value="#{manage.studentAccount}" var="studentAccount"
+
+                                  style="border: 1px">
+                        <h:column>
+                            <f:facet name="header">username</f:facet>
+                            #{studentAccount.studentUsername}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">firstname</f:facet>
+                            #{studentAccount.firstName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">lastname</f:facet>
+                            #{studentAccount.lastName}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">email</f:facet>
+                            <h:inputText value="#{studentAccount.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">loginEnable</f:facet> 
+                            <h:selectBooleanCheckbox value="#{studentAccount.loginEnabled}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">major</f:facet>
+                            <h:inputText value="#{studentAccount.major}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                </h:panelGroup>
+
+            </h:panelGrid><br/>
+        </h:form>
+
+    </h:body>
+</html>
+
